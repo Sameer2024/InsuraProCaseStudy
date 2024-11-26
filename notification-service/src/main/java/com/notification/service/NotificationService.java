@@ -5,6 +5,6 @@ public interface NotificationService {
 	
 	/* Method to check if a user's policy has expired and send a notification
 	 accordingly.*/
-	String checkPolicyExpiryAndSendNotification(int userId);
+	String checkPolicyExpiryAndSendNotification(int userId,String emaiId);
 
 }

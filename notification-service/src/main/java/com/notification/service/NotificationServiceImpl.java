@@ -85,7 +85,7 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	// Method to check policy expiry and send a notification if applicable.
-	public String checkPolicyExpiryAndSendNotification(int userId) {
+	public String checkPolicyExpiryAndSendNotification(int userId,String emaiId) {
 		try {
 			String url = policyServiceUrl + userId;
 
@@ -111,7 +111,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 			// Check if the policy is expiring within the warning period (15 days).
 			if (daysUntilExpiry <= EXPIRY_WARNING_DAYS) {
-				notification.setRecipient(notificationDto.getEmailId());
+				notification.setRecipient(emaiId);
 				notification.setSubject("Policy Expiry Reminder:" + policyName);
 				return sendSimpleMail(notification);
 			} else {
