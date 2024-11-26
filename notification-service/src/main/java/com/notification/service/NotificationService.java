@@ -1,4 +1,4 @@
-package com.example.service;
+package com.notification.service;
 
 //This interface defines the contract for sending policy expiry notifications
 public interface NotificationService {

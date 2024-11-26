@@ -1,4 +1,4 @@
-package com.example.service;
+package com.notification.service;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.exception.PolicyExpiryNotificationException;
-import com.example.exception.PolicyNotFoundException;
-import com.example.model.Notification;
-import com.example.model.NotificationDto;
+import com.notification.exception.PolicyExpiryNotificationException;
+import com.notification.exception.PolicyNotFoundException;
+import com.notification.model.Notification;
+import com.notification.model.NotificationDto;
 
 import jakarta.mail.internet.MimeMessage;
 
@@ -52,10 +52,6 @@ public class NotificationServiceImpl implements NotificationService {
 	// Method to send a simple email to the recipient about the policy expiry.
 	public String sendSimpleMail(Notification notification) {
 
-		if (notification == null || !StringUtils.hasText(notification.getRecipient())
-				|| !StringUtils.hasText(notification.getSubject()) || !StringUtils.hasText(notification.getMsgBody())) {
-			return "Invalid notification data: recipient, subject, or body is missing.";
-		}
 		try {
 
 			MimeMessage message = javaMailSender.createMimeMessage();

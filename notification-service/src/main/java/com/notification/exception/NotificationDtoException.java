@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.notification.exception;
 
 public class NotificationDtoException extends RuntimeException {
     public NotificationDtoException(String message) {

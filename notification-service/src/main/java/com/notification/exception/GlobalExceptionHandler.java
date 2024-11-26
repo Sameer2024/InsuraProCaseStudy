@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.notification.exception;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

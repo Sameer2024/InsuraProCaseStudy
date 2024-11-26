@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.notification.exception;
 
 public class PolicyExpiryNotificationException extends RuntimeException {
     public PolicyExpiryNotificationException(String message) {

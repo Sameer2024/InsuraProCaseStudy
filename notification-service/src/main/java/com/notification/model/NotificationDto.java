@@ -1,4 +1,4 @@
-package com.example.model;
+package com.notification.model;
 
 import java.time.LocalDate;
 
