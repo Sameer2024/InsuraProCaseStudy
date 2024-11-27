@@ -10,6 +10,14 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+/*
+ * NotificationDto - Data Transfer Object (DTO) to hold notification details
+ * such as user ID, email, policy name, and expiry date.
+ * 
+ * Author Name: Sameer Gupta
+ *  Date: 25-11-2024
+ */
+
 @Data
 @Component
 public class NotificationDto {
@@ -20,18 +28,14 @@ public class NotificationDto {
 	private int userId;
 
 	// Represents the email address to which the notification will be sent.
-	@Email(message = "Invalid email format")
-	@NotEmpty(message = "Email ID cannot be empty")
 	private String emailId;
 
 	// Represents the name of the policy associated with the notification (e.g.,
 	// health policy, insurance policy).
-	@NotEmpty(message = "Policy name cannot be empty")
 	private String policyName;
 
 	// Represents the expiry date of the policy. Used to determine if the
 	// notification should be triggered.
-	@NotNull(message = "Expiry date cannot be null")
 	private LocalDate expiryDate;
 
 }

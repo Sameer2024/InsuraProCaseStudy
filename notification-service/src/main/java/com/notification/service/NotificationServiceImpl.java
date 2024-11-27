@@ -20,6 +20,13 @@ import com.notification.model.NotificationDto;
 
 import jakarta.mail.internet.MimeMessage;
 
+/*
+ * NotificationServiceImpl - Implementation of NotificationService to handle policy expiry notifications.
+ * 
+ * Author Name: Sameer Gupta
+ * Date: 25-11-2024
+ */
+
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
@@ -48,8 +55,27 @@ public class NotificationServiceImpl implements NotificationService {
 
 	private LocalDate expiryDate;
 	private String policyName;
+	
+	
 
-	// Method to send a simple email to the recipient about the policy expiry.
+	/*
+	 * Method to send a simple email to the recipient about the policy expiry.
+	 * 
+	 * Author Name: Sameer Gupta Date: 25-11-2024
+	 *
+	 * @param notification the notification details including recipient and subject
+	 */
+
+	
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
 	public String sendSimpleMail(Notification notification) {
 
 		try {
@@ -77,15 +103,32 @@ public class NotificationServiceImpl implements NotificationService {
 		}
 	}
 
-	// Helper method to read an HTML template from a file.
+	/*
+	 * Helper method to read an HTML template from a file.
+	 * 
+	 * Author Name: Sameer Gupta Date: 25-11-2024
+	 *
+	 * @param templatePath the path to the HTML template
+	 */
+
 	private String readHtmlTemplate(String templatePath) throws Exception {
 		try (var inputStream = Objects.requireNonNull(getClass().getResourceAsStream(templatePath))) {
 			return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 		}
 	}
 
-	// Method to check policy expiry and send a notification if applicable.
-	public String checkPolicyExpiryAndSendNotification(int userId,String emaiId) {
+	/*
+	 * Method to check policy expiry and send a notification if applicable.
+	 * 
+	 * Author: Sameer Gupta 
+	 * Date: 25-11-2024
+	 *
+	 * @param userId the ID of the user whose policy expiry needs to be checked
+	 * @param emaiId the email address to send the notification to
+	 * @return a message indicating whether the email was sent successfully or if
+	 *         the policy is not expiring soon
+	 */
+	public String checkPolicyExpiryAndSendNotification(int userId) {
 		try {
 			String url = policyServiceUrl + userId;
 
@@ -111,7 +154,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 			// Check if the policy is expiring within the warning period (15 days).
 			if (daysUntilExpiry <= EXPIRY_WARNING_DAYS) {
-				notification.setRecipient(emaiId);
+				notification.setRecipient(notificationDto.getEmailId());
 				notification.setSubject("Policy Expiry Reminder:" + policyName);
 				return sendSimpleMail(notification);
 			} else {

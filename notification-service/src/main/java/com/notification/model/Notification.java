@@ -9,6 +9,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * Notification - Represents a notification to be sent to a recipient.
+ * 
+ * Author Name: Sameer Gupta
+ * Date: 25-11-2024
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
